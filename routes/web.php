@@ -26,3 +26,5 @@ Route::post('/login-user', 'App\Http\Controllers\UserController@login')->name('l
 Route::get('/forgot', function(){
     return view('forgot'); 
 });
+
+Route::get('/verify/{token}', 'UserController@verify')->name('verify');

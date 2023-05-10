@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Models\EmailVerification;
+use App\Mail\VerifyEmail;
+
 
 class UserController extends Controller
 {
@@ -61,15 +65,37 @@ class UserController extends Controller
       
         $res = $user->save();
         if($res){
+          // Create a new EmailVerification record
+          $verification = new EmailVerification();
+          $verification->token = Str::random(40);
+          $verification->user_id = $user->id;
+          $verification->save();
+  
+          // Send the verification email to the user
+          Mail::to($user->email)->send(new VerifyEmail($user, $verification->token));
+  
           return response()->json([
-            'status' => 'success'
+              'status' => 'success'
           ]);
-        } else {
+      } else {
           return response()->json([
-            'status' => 'fail',
-            'message' => 'Registration failed'
+              'status' => 'fail',
+              'message' => 'Registration failed'
           ]);
-        }
+      }
     }
+
+    public function verify($token) {
+      $verification = EmailVerification::where('token', $token)->firstOrFail();
+
+      $user = User::find($verification->user_id);
+      $user->email_verified_at = now();
+      $user->save();
+
+      $verification->delete();
+
+      return redirect('/')->with('success', 'Your email has been verified!');
+  }
+
       
 }
