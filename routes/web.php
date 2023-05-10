@@ -13,14 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', 'App\Http\Controllers\UserController@loginview');
 
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/login', 'App\Http\Controllers\UserController@loginview');
+
+Route::get('/register', 'App\Http\Controllers\UserController@registerview');
+
+Route::post('/register-user', 'App\Http\Controllers\UserController@register')->name('register-user');
+
+Route::post('/login-user', 'App\Http\Controllers\UserController@login')->name('login-user');
 
 Route::get('/forgot', function(){
-   return view('forgot'); 
+    return view('forgot'); 
 });

@@ -22,16 +22,16 @@
                 </div>
                 <div class="row">
                   <div class="col-md-9 col-lg-8 mx-auto">
-                    <form>
+                    <form action="{{route('login-user')}}" method='post'>
                         @csrf
                         <div class="form mb-3">
                             <i class="fa fa-envelope-o input-icon"></i>
-                            <input type="text" class="form-control margin-left" id="login_id" placeholder="{{ __('Email/Số điện thoại') }}">
+                            <input type="text" class="form-control margin-left" id="login_id" placeholder="{{ __('Email') }}" name="email" value="{{old('email')}}">
                         </div>
 
                         <div class="form mb-3">
                             <i class="fa fa-lock input-icon"></i>
-                            <input type="password" class="form-control margin-left" id="user_password" placeholder="{{ __('Mật khẩu') }}">
+                            <input type="password" class="form-control margin-left" id="user_password" placeholder="{{ __('Mật khẩu') }}" name="password">
                             <i class="fa-regular fa-eye-slash input-icon-1" onclick="showPassword()"></i>
                         </div>
                         <div class="d-grid">

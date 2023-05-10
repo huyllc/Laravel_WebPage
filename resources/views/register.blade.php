@@ -22,27 +22,27 @@
                 </div>
                 <div class="row">
                 <div class="col-md-9 col-lg-8 mx-auto">
-                    <form>
+                    <form action="{{route('register-user')}}" method="post">
                         @csrf
                         <div class="form mb-3">
                             <i class="fa-solid fa-user-tie input-icon"></i>
-                            <input type="text" class="form-control margin-left" id="login_name" placeholder="Họ và tên">
+                            <input type="text" class="form-control margin-left" id="login_name" placeholder="Họ và tên" name='name' value="{{old('name')}}">
                         </div>
 
                         <div class="form mb-3">
                             <i class="fa fa-envelope-o input-icon"></i>
-                            <input type="text" class="form-control margin-left" id="user_infor" placeholder="Email/Số điện thoại">
+                            <input type="text" class="form-control margin-left" id="user_infor" placeholder="Email" name='email' value="{{old('email')}}">
                         </div>
 
                         <div class="form mb-3">
                             <i class="fa fa-lock input-icon"></i>
-                            <input type="password" class="form-control margin-left" id="user_password" placeholder="Mật khẩu">
+                            <input type="password" class="form-control margin-left" id="user_password" placeholder="Mật khẩu" name='password'>
                             <i class="fa-regular fa-eye-slash input-icon-1" onclick="showPassword()"></i>
                         </div>
 
                         <div class="form mb-3">
                             <i class="fa-solid fa-check input-icon"></i>
-                            <input type="password" class="form-control margin-left" id="user_passwordconfirm" placeholder="Xác nhận mật khẩu">
+                            <input type="password" class="form-control margin-left" id="user_passwordconfirm" placeholder="Xác nhận mật khẩu" name='confirmpass'>
                             <i class="fa-regular fa-eye-slash input-icon-1"></i>
                         </div>
 

@@ -13,8 +13,8 @@
 </head>
 <body>
     @yield('content')
-    <script src="{{ asset('js/login.js') }}"></script>
+    <!-- <script src="{{ asset('js/login.js') }}"></script> -->
     <script src="{{ asset('js/register.js') }}"></script>
-    <script src="{{ asset('js/forgotpass.js') }}"></script>
+    <!-- <script src="{{ asset('js/forgotpass.js') }}"></script> -->
 </body>
 </html>
